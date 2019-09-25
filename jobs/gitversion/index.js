@@ -6,7 +6,6 @@ const fs = require('fs')
 class GitVersionJob {
   constructor () {
     this.version = '';
-    this.autoCommit();
   }
 
   gitPull()  {
@@ -59,7 +58,6 @@ class GitVersionJob {
         resolve(arr.join('\n'))
       })
       rStream.on('data', function(data) {
-        console.log('data')
         fc += data;
       })
       rStream.on('error', function(err) {
