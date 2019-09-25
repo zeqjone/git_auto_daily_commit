@@ -9,11 +9,26 @@ const gitPull = () => {
   shell.exec('git pull -f origin dev:dev')
 }
 
-const mkVersionChange = async () => {
+const setPackage = async (str) => {
+  let packagePath = path.resolve(managerPath, 'package.json');
+  let wStream = fs.createWriteStream(packagePath, {flags: 'r+'});
+  wStream.write(str, function (err) {
+    if (err) {
+      console.error('write err', err);
+    }
+  })
+  wStream.on('close', () => {
+    console.info('write stream close')
+  })
+  wStream.on('error', (err) => {
+    console.error('write stream error', err)
+  })
+}
+
+const getStrPackage = async () => {
   return new Promise((resolve, reject) => {
     let packagePath = path.resolve(managerPath, 'package.json');
     let rStream = fs.createReadStream(packagePath, {flags: 'r+'});
-    let wStream = fs.createWriteStream(packagePath, {flags: 'r+'});
     let fc = '';
     rStream.on('end', function() {
       let arr = fc.split(/\n/g);
@@ -29,12 +44,6 @@ const mkVersionChange = async () => {
           break;
         }
       }
-      wStream.write(arr.join('\n'), function (err) {
-        if (err) {
-          console.error('write err', err);
-        }
-        console.log('write success')
-      })
       resolve(arr.join('\n'))
     })
     rStream.on('data', function(data) {
@@ -59,5 +68,8 @@ module.exports = {
     arrVersion.push(lastVersion);
     let packageFile = fs.readFileSync(package);
   },
-  mkVersionChange: mkVersionChange
+  async mkVersionChange() {
+    let str = await getStrPackage();
+    await setPackage(str)
+  }
 }
