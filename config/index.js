@@ -1,3 +1,3 @@
 module.exports = {
-  managerPath: '/work/project/online'
+  managerPath: '/data/work/Redcore_Manager'
 }
