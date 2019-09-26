@@ -1,9 +1,10 @@
 const schedule = require('node-schedule')
 const moment = require('moment')
 const gitVersionJob = require('./jobs/gitversion')
+const logger = require('./lib/logger')
 
 let job = schedule.scheduleJob('30 23 * * 1-5', function () {
-  console.log('git version commit start');
-  console.log(moment().format('YYYY-MM-DD HH:mm:ss'));
+// let job = schedule.scheduleJob('*/2 * * * 1-5', function () {
+  logger.info(`git version commit start: ${moment().format('YYYY-MM-DD HH:mm:ss')}`);
   gitVersionJob.autoCommit()
 })
