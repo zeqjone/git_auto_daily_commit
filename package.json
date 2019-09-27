@@ -1,13 +1,13 @@
 {
-  "name": "git-auto-daily-commit",
+  "name": "gito",
   "author": {
     "name": "zeq",
     "email": "eriang.zhu@clouddeep.cn"
   },
   "version": "1.1.1",
   "scripts": {
-    "release": "pm2 start ecosystem.config.js --only release-implant",
-    "test": "pm2 start ecosystem.config.js --only test-implant",
+    "release": "pm2 start ecosystem.config.js --only release-gito",
+    "test": "pm2 start ecosystem.config.js --only test-gito",
     "dev": "cross-env NODE_ENV=development node app.js"
   },
   "dependencies": {

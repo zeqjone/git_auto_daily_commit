@@ -3,13 +3,13 @@
  */
 module.exports = {
   apps: [{
-    name: 'release-implant',
+    name: 'release-gito',
     script: './app.js',
     env: {
       "NODE_ENV": "production"
     }
   }, {
-    name: 'test-implant',
+    name: 'test-gito',
     script: './app.js',
     env: {
       "NODE_ENV": "test"
