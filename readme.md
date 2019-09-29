@@ -10,3 +10,7 @@
   + 提交上面的更新，注释为 version: x.y.z;
 
 * 周 1，2，3，4，5 做任务
+
+### todos
+
+- [ ] package.json 和 ui/package.json 的 version 不一致
