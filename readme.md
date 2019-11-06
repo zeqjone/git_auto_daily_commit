@@ -13,4 +13,6 @@
 
 ### todos
 
-- [ ] package.json 和 ui/package.json 的 version 不一致
+- [x] package.json 和 ui/package.json 的 version 不一致
+- [ ] 支持配置 git GPG key 对 git repo 操作
+- [ ] 支持配置本地路径
